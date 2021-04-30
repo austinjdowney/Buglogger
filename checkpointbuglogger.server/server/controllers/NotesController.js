@@ -2,9 +2,9 @@ import BaseController from '../utils/BaseController'
 import { Auth0Provider } from '@bcwdev/auth0provider'
 import { notesService } from '../services/NotesService'
 
-export class ListsController extends BaseController {
+export class NotesController extends BaseController {
   constructor() {
-    super('api/lists')
+    super('api/notes')
     this.router
       .use(Auth0Provider.getAuthorizedUserInfo)
       .post('', this.createNote)
