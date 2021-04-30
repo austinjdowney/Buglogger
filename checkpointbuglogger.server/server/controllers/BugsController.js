@@ -13,6 +13,7 @@ export class BugsController extends BaseController {
       .get('/:id/notes', this.getNotesByBugId)
       .post('', this.createBug)
       .put('/:id', this.editBug)
+      .delete('/:id', this.deleteBug)
   }
 
   // creatorId???
@@ -59,6 +60,15 @@ export class BugsController extends BaseController {
     try {
       req.body.id = req.params.id
       const data = await bugsService.editBug(req.body)
+      return res.send(data)
+    } catch (error) {
+      next(error)
+    }
+  }
+
+  async deleteBug(req, res, next) {
+    try {
+      const data = await bugsService.deleteBug(req.params.id, req.userInfo.id)
       return res.send(data)
     } catch (error) {
       next(error)
