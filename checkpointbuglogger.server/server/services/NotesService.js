@@ -10,14 +10,6 @@ class NotesService {
     return note
   }
 
-  async getNotesById(id, userId) {
-    const data = await dbContext.Note.findOne({ _id: id, creatorId: userId })
-    if (!data) {
-      throw new BadRequest('Invalid Id')
-    }
-    return data
-  }
-
   async createNote(body) {
     return await dbContext.Note.create(body)
   }
