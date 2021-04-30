@@ -22,7 +22,7 @@ class NotesService {
     return await dbContext.Note.create(body)
   }
 
-  async editList(body) {
+  async editNote(body) {
     const data = await dbContext.Note.findOneAndUpdate({ _id: body.id }, body, { new: true })
     if (!data) {
       throw new BadRequest('Invalid Id')
@@ -30,8 +30,8 @@ class NotesService {
     return data
   }
 
-  async deleteNote(id) {
-    const data = await dbContext.Note.findOneAndDelete({ _id: id })
+  async deleteNote(id, userId) {
+    const data = await dbContext.Note.findOneAndDelete({ _id: id, creatorId: userId })
     if (!data) {
       throw new BadRequest('Invalid Id')
     }
