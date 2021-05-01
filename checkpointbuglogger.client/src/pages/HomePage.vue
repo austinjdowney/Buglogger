@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="row justify-content-center">
-      <div class="card card-width ml-5 mb-4">
+      <div class="card card-width mx-3-5 mb-4">
         <div class="card-body bg-success card-width">
           <div class="card-title d-flex flex-direction-row justify-content-between border-bottom">
             <h4 class="mx-3 border-bottom border-right">
@@ -88,7 +88,7 @@ export default {
   font-family: 'Black Ops One', cursive;
 }
 .card-width{
-  min-width: 60rem;
+  min-width: 69rem;
   border-radius:25px;
   box-shadow: 20px 10px 20px #474747
 }

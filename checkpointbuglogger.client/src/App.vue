@@ -4,6 +4,7 @@
   </header>
   <main>
     <router-view />
+    <Create-bug-report-modal />
   </main>
   <footer>
     <div class="bg-success text-light text-center p-4">

@@ -13,7 +13,7 @@
       <b>{{ bugProp.closed }}</b>
     </div>
     <div class="col-2 ml-5 border-right border-bottom">
-      <b>{{ bugProp.updatedAt }}</b>
+      <b>{{ new Date( bugProp.updatedAt).toLocaleString(en, times) }}</b>
     </div>
   </div>
 </template>
@@ -35,6 +35,14 @@ export default {
   // },
   setup() {
     return {
+      times: {
+        year: '2-digit',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      }
     }
   },
   components: {}
