@@ -71,6 +71,7 @@
 import { reactive, computed } from 'vue'
 import { bugsService } from '../services/BugsService'
 import { AppState } from '../AppState'
+import Notification from '../utils/Notification'
 import $ from 'jquery'
 export default {
   name: 'CreateBugReportModal',

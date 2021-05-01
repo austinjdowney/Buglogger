@@ -7,8 +7,8 @@ class NotesService {
     AppState.notes = res.data
   }
 
-  async addNote(newNote) {
-    const res = await api.post('api/notes', newNote)
+  async addNote(data) {
+    const res = await api.post('api/notes', data)
     AppState.notes.push(res.data)
   }
 

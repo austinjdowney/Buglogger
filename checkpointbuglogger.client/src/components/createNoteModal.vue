@@ -50,6 +50,7 @@
 import { reactive, computed } from 'vue'
 import { notesService } from '../services/NotesService'
 import { AppState } from '../AppState'
+import Notification from '../utils/Notification'
 import $ from 'jquery'
 export default {
   name: 'CreateNoteModal',

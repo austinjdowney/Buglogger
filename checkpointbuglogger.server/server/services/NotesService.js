@@ -11,7 +11,8 @@ class NotesService {
   }
 
   async createNote(body) {
-    return await dbContext.Note.create(body)
+    const note = await dbContext.Note.create(body)
+    return note
   }
 
   async editNote(body) {
