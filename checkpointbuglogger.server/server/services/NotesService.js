@@ -2,8 +2,8 @@ import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
 
 class NotesService {
-  async getNotesByBugId(query = {}) {
-    const note = await dbContext.Note.find(query)
+  async getNotesByBugId(id) {
+    const note = await dbContext.Note.find({ bug: id }).populate('Bug')
     if (!note) {
       throw new BadRequest('Invalid Id')
     }
