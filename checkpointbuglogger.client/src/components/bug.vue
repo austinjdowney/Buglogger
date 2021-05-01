@@ -27,12 +27,6 @@ export default {
       required: true
     }
   },
-  // async changeDate(bugProp) {
-  //   const timeStr = bugProp.updatedAt
-  //   // eslint-disable-next-line no-undef
-  //   const newFormat = moment(timeStr).format('M/DD/YYYY')
-  //   document.body.textContent = newFormat
-  // },
   setup() {
     return {
       times: {

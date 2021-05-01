@@ -8,6 +8,11 @@ class BugsService {
     AppState.bugs = res.data
   }
 
+  async getBugById(id) {
+    const res = await api.get(`api/boards/${id}`)
+    AppState.activeBug = res.data
+  }
+
   async addBug(data) {
     const res = await api.post('api/bugs', data)
     router.push({ name: 'BugDetails', params: { id: res.data.id } })

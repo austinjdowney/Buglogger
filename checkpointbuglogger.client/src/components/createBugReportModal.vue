@@ -86,8 +86,8 @@ export default {
       state,
       async addBug() {
         try {
-          await bugsService.addBug(state.newBug)
           state.newBug = {}
+          await bugsService.addBug(state.newBug)
           $('#new-bug-form').modal('hide')
           Notification.toast('Successfully Created Bug Report', 'success')
         } catch (error) {
