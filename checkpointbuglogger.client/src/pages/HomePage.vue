@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid bg-warning">
+  <div class="container-fluid bg-warning flex-grow-1">
     <div class="row">
       <div class="col-12 my-4 ml-4">
         <h1 class="report-headline ml-5">
@@ -14,6 +14,7 @@
           >
             Report
           </button>
+          <Create-bug-report-modal />
         </h1>
       </div>
     </div>
@@ -34,7 +35,7 @@
               Last Modified
             </h4>
           </div>
-          <p class="card-text">
+          <p class="card-text locked-scroll">
             <ul>
               <Bug v-for="bug in state.bugs" :key="bug.id" :bug-prop="bug" />
             </ul>
@@ -91,6 +92,11 @@ export default {
   min-width: 69rem;
   border-radius:25px;
   box-shadow: 20px 10px 20px #474747
+}
+
+.locked-scroll{
+  height:70vh;
+  overflow-y: scroll;
 }
 span{
   text-shadow: 1px 2px;

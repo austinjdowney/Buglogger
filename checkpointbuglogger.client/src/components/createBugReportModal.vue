@@ -32,7 +32,7 @@
                 </div>
               </div>
               <div class="col-6">
-                Reported By: {{ state.user.name }}
+                Reported By: {{ state.user.picture }}{{ state.user.name }}
               </div>
             </div>
             <div class="form-group">
@@ -86,8 +86,8 @@ export default {
       state,
       async addBug() {
         try {
-          state.newBug = {}
           await bugsService.addBug(state.newBug)
+          state.newBug = {}
           $('#new-bug-form').modal('hide')
           Notification.toast('Successfully Created Bug Report', 'success')
         } catch (error) {

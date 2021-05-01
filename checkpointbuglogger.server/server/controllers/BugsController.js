@@ -29,7 +29,7 @@ export class BugsController extends BaseController {
   // creatorId???
   async getBugById(req, res, next) {
     try {
-      const bug = await bugsService.getBugById({ _id: req.params.id })
+      const bug = await bugsService.getBugById(req.params.id)
       return res.send(bug)
     } catch (error) {
       next(error)

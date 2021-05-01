@@ -1,8 +1,10 @@
 <template>
-  <div class="bugDetails">
+  <div class="bugDetails" v-if="state.bug">
+    <h1>
+      Title: {{ state.bug.title }}
+    </h1>
     <div class="row">
-      <h1>Title: {{ state.bug.title }}</h1>
-      <h3>Reported by: {{ state.creator.name }}</h3>
+      <h3>Reported by: {{ state.bug.creator.name }}</h3>
     </div>
   </div>
 </template>
@@ -16,10 +18,18 @@ import Notification from '../utils/Notification'
 import { useRoute } from 'vue-router'
 export default {
   name: 'BugDetails',
+  // props: {
+  //   bugProp: {
+  //     type: Object,
+  //     required: true
+  //   }
+  // },
   setup() {
     const route = useRoute()
     const state = reactive({
-      bug: computed(() => AppState.activeBug)
+      bug: computed(() => AppState.activeBug),
+      user: computed(() => AppState.user),
+      account: computed(() => AppState.account)
     })
 
     onMounted(async() => {

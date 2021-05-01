@@ -2,15 +2,16 @@ import { dbContext } from '../db/DbContext'
 import { BadRequest } from '../utils/Errors'
 class BugsService {
   async getAllBugs(query = {}) {
-    const bug = await dbContext.Bug.find(query).populate('creator')
+    const bug = await dbContext.Bug.find(query).populate('creator', 'name picture')
     if (!bug) {
       throw new BadRequest('Invalid Id')
     }
     return bug
   }
 
-  async getBugById(query) {
-    const data = await dbContext.Bug.findOne(query).populate('creator')
+  // id or query??
+  async getBugById(id) {
+    const data = await dbContext.Bug.findById(id).populate('creator', 'name picture')
     if (!data) {
       throw new BadRequest('Invalid Id')
     }

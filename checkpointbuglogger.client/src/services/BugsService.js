@@ -9,7 +9,7 @@ class BugsService {
   }
 
   async getBugById(id) {
-    const res = await api.get(`api/boards/${id}`)
+    const res = await api.get('api/bugs/' + id)
     AppState.activeBug = res.data
   }
 
