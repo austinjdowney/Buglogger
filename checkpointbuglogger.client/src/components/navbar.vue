@@ -1,8 +1,8 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-success">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-column align-items-center">
-        <i class="fas fa-bug">LOG</i>
+      <div class="d-flex flex-row mx-2 align-items-center report-headline">
+        <i class="fas fa-bug icon mx-2"></i> Logger
       </div>
     </router-link>
     <button
@@ -19,8 +19,8 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <router-link :to="{ name: 'Home' }" class="nav-link">
-            Home
+          <router-link :to="{ name: 'Home' }" class="nav-link report-headline">
+            <b>Home</b>
           </router-link>
         </li>
       </ul>
@@ -112,7 +112,13 @@ a:hover {
 .nav-link{
   text-transform: uppercase;
 }
-.nav-item .nav-link.router-link-exact-active{
-  color: var(--primary);
+.nav-item .nav-link.router-link-exact-active:hover{
+  color: var(--warning);
+}
+.icon:hover{
+  color: var(--warning);
+}
+.report-headline{
+  font-family: 'Black Ops One', cursive;
 }
 </style>
