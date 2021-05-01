@@ -17,32 +17,30 @@
           </button>
         </div>
         <form @submit.prevent="addNote">
-          <div class="modal-body">
+          <div class="modal-body ml-3">
             <div class="row">
               Reported By: {{ state.user.name }}
             </div>
           </div>
-          <div class="form-group">
-            <label for="description">Description</label>
+          <div class="form-group ml-3">
+            <label for="body">Message</label>
             <input type="text"
                    class="form-control"
-                   id="description"
-                   placeholder="Description..."
+                   id="body"
+                   placeholder="Message..."
                    minlength="3"
-                   maxlength="50"
-                   rows="6"
-                   v-model="state.newNote.description"
+                   v-model="state.newNote.body"
             >
           </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-warning" data-dismiss="modal">
+              Close
+            </button>
+            <button type="submit" class="btn btn-success">
+              Create
+            </button>
+          </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">
-          Close
-        </button>
-        <button type="submit" class="btn btn-primary">
-          Create
-        </button>
       </div>
     </div>
   </div>
@@ -72,8 +70,8 @@ export default {
       state,
       async addNote() {
         try {
-          state.newNote = {}
           await notesService.addNote(state.newNote)
+          state.newNote = {}
           $('#new-note-form').modal('hide')
           Notification.toast('Successfully Created Bug Report', 'success')
         } catch (error) {

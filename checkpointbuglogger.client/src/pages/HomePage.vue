@@ -89,7 +89,7 @@ export default {
   font-family: 'Black Ops One', cursive;
 }
 .card-width{
-  min-width: 69rem;
+  //min-width: 69rem;
   border-radius:25px;
   box-shadow: 20px 10px 20px #474747
 }

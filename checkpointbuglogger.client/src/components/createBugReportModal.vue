@@ -31,28 +31,33 @@
                   >
                 </div>
               </div>
-              <div class="col-6">
-                Reported By: {{ state.user.picture }}{{ state.user.name }}
+              <div class="col-6 bug-info">
+                <small>
+                  Reported By:
+                  <img :src="state.user.picture" alt="">
+                  {{ state.user.name }}
+                </small>
               </div>
             </div>
             <div class="form-group">
               <label for="description">Description</label>
-              <input type="text"
-                     class="form-control"
-                     id="description"
-                     placeholder="Description..."
-                     minlength="3"
-                     maxlength="20"
-                     rows="4"
-                     v-model="state.newBug.description"
+              <textarea class="form-control input-box locked-scroll"
+                        cols="20"
+                        rows="10"
+                        wrap="hard"
+                        placeholder="Description..."
+                        minlength="3"
+                        v-model="state.newBug.description"
+                        id="description"
               >
+              </textarea>
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            <button type="button" class="btn btn-warning" data-dismiss="modal">
               Close
             </button>
-            <button type="submit" class="btn btn-primary">
+            <button type="submit" class="btn btn-success">
               Create
             </button>
           </div>
@@ -102,4 +107,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+img{
+  height: 30px;
+    width: 30px;
+  }
+  .input-box{
+    min-height: 10rem
+  }
+  .bug-info{
+word-break: break-all;
+}
+.locked-scroll{
+  height:20vh;
+  overflow-y: scroll;
+  word-break: break-all;
+}
 </style>

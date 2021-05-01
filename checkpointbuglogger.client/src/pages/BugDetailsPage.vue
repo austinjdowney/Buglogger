@@ -1,10 +1,68 @@
 <template>
-  <div class="bugDetails" v-if="state.bug">
-    <h1>
-      Title: {{ state.bug.title }}
-    </h1>
+  <div class="bugDetails container-fluid" v-if="state.bug">
     <div class="row">
-      <h3>Reported by: {{ state.bug.creator.name }}</h3>
+      <div class="col-10">
+        <h1 class="report-headline ml-4 mt-4">
+          <b> Title: {{ state.bug.title }} </b>
+        </h1>
+        <h2 class="ml-4">
+          Reported by:
+          <img class="rounded-circle" :src="state.bug.creator.picture" alt="">
+          {{ state.bug.creator.name }}
+        </h2>
+      </div>
+      <div class="col-2 mt-4">
+        <button type="button" class="btn btn-warning" @click="closeBug">
+          close
+        </button>
+        <!-- how to switch true and false to open and closed-->
+        <div>
+          status: {{ state.bug.closed }}
+        </div>
+      </div>
+    </div>
+    <div class="row bg-white">
+      <div class="col-md-12 ml-3">
+        {{ state.bug.description }}
+      </div>
+    </div>
+    <div class="row">
+      <h3>
+        Notes
+      </h3>
+      <button title="Open Create Note Form"
+              type="button"
+              class="btn btn-success text-dark shadow"
+              data-toggle="modal"
+              data-target="#new-note-form"
+      >
+        Add
+      </button>
+      <Create-note-modal />
+    </div>
+    <div class="row justify-content-center">
+      <div class="card card-width mx-3-5 mb-4">
+        <div class="card-body bg-success card-width">
+          <div class="card-title d-flex flex-direction-row justify-content-between border-bottom">
+            <div class="col-6">
+              <h4 class="mx-3 border-bottom border-right">
+                Reported By
+              </h4>
+            </div>
+            <div class="col-6">
+              <h4 class="mx-3 border-bottom border-right">
+                Description
+              </h4>
+            </div>
+          </div>
+          <p class="card-text locked-scroll" v-if="state.notes">
+            <ul>
+              <!--inject note component-->
+              <Note v-for="note in state.notes" :key="note.id" :note-prop="note" />
+            </ul>
+          </p>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -28,6 +86,7 @@ export default {
     const route = useRoute()
     const state = reactive({
       bug: computed(() => AppState.activeBug),
+      notes: computed(() => AppState.notes),
       user: computed(() => AppState.user),
       account: computed(() => AppState.account)
     })
@@ -42,20 +101,27 @@ export default {
     })
     return {
       state,
-      route
-      // add this to createNoteModal
-      // async addNote() {
-      //   try {
-      //     state.newNote.bugId = route.params.id
-      //     await notesService.addList(state.newNote)
-      //     state.newNote = {}
-      //     Notification.toast('Successfully Created Note', 'success')
-      //   } catch (error) {
-      //     Notification.toast('error:' + error, 'warning')
-      //   }
-      // }
+      route,
+      async closeBug(bug) {
+        try {
+          await bugsService.closeBug(bug.id)
+          Notification.toast('Successfully Changed Status', 'success')
+        } catch (error) {
+          Notification.toast('Error: ' + error, 'warning')
+        }
+      }
+
     }
   }
-
 }
 </script>
+
+<style scoped lang="scss">
+img{
+  height: 40px;
+    width: 40px;
+  }
+.report-headline{
+  font-family: 'Black Ops One', cursive;
+}
+</style>

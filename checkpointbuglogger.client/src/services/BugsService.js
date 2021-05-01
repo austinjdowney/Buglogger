@@ -17,6 +17,10 @@ class BugsService {
     const res = await api.post('api/bugs', data)
     router.push({ name: 'BugDetails', params: { id: res.data.id } })
   }
+
+  async closeBug(id) {
+    await api.delete('api/bugs/' + id)
+  }
 }
 
 export const bugsService = new BugsService()
