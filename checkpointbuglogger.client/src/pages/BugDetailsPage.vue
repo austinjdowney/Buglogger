@@ -12,8 +12,8 @@
         </h2>
       </div>
       <div class="col-2 mt-4">
-        <button type="button" class="btn btn-warning" @click="closeBug">
-          close
+        <button type="button" class="btn text-light btn-warning" @click="closeBug">
+          <b>close</b>
         </button>
         <!-- how to switch true and false to open and closed-->
         <div>
@@ -26,17 +26,17 @@
         {{ state.bug.description }}
       </div>
     </div>
-    <div class="row">
-      <h3>
+    <div class="row ml-5 my-3">
+      <h3 class="mx-2">
         Notes
       </h3>
       <button title="Open Create Note Form"
               type="button"
-              class="btn btn-success text-dark shadow"
+              class="btn btn-success text-light shadow"
               data-toggle="modal"
               data-target="#new-note-form"
       >
-        Add
+        <b> Add </b>
       </button>
       <Create-note-modal />
     </div>
@@ -123,5 +123,9 @@ img{
   }
 .report-headline{
   font-family: 'Black Ops One', cursive;
+}
+.card-width{
+  border-radius:25px;
+  box-shadow: 20px 10px 20px #474747
 }
 </style>

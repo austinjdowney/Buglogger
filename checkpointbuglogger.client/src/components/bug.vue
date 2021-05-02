@@ -10,14 +10,14 @@
       <b>{{ bugProp.creator.name }}</b>
     </div>
     <div class="col-md-2 mx-5 border-right border-bottom">
-      <!-- <b>{{ bugProp.closed }}</b> -->
+      <b>{{ bugProp.closed }}</b>
 
-      <p v-if="bug.closed==false">
+      <!-- <p v-if="bug.closed==false">
         <span>Open</span>
       </p>
       <p v-else>
         <span>Closed</span>
-      </p>
+      </p> -->
     </div>
     <div class="col-md-2 ml-5 border-right border-bottom">
       <b>{{ new Date( bugProp.updatedAt).toLocaleString(en, times) }}</b>

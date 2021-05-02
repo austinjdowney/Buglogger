@@ -20,7 +20,28 @@ class BugsService {
 
   async closeBug(id) {
     await api.delete('api/bugs/' + id)
+
+    // HOW TO SWITCH THE TRUE AND FALSE TO OPEN AND CLOSED
+    //
+    // if (bugs.id.closed === false) {
+    //   return 'Open'
+    // } else {
+    //   return 'Closed'
+    // }
   }
+
+  // async hideClosed(){
+  //   let sortedBugs= this.bugs
+  //   sortedBugs= sortedBugs.sort(a,b).reverse() => {
+  //     let aBugs = a.title.toLowerCase(), bBugs = b.toLowerCase();
+  //     if (aBugs <bBugs){
+  //       return -1
+  //     } if (aBugs > bBugs) {
+  //       return 1
+  //     }
+  //     return 0
+  //   }
+  // }
 }
 
 export const bugsService = new BugsService()
