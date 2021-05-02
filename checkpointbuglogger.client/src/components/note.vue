@@ -35,6 +35,7 @@ export default {
       async deleteNote() {
         try {
           await notesService.deleteNote(props.noteProp.id, props.noteProp.bug)
+          Notification.toast('Successfully Deleted Your Note', 'success')
         } catch (error) {
           Notification.toast('Error: ' + error, 'warning')
         }
