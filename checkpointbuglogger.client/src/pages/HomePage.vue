@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid bg-warning flex-grow-1">
     <div class="row">
-      <div class="col-12 my-4 ml-4">
+      <div class="col-md-8 my-4 ml-4">
         <h1 class="report-headline ml-5">
           <span>
             Current Bug
@@ -16,6 +16,11 @@
           </button>
           <Create-bug-report-modal />
         </h1>
+      </div>
+      <div class="col-md-3 mt-5">
+        <input type="checkbox" id="openClose" name="openClose" />
+        <!--PUT @click="sortClosed"-->
+        <span class=""> Hide Closed </span>
       </div>
     </div>
     <div class="row justify-content-center">
@@ -97,6 +102,7 @@ export default {
 .locked-scroll{
   height:70vh;
   overflow-y: scroll;
+  overflow-x:hidden
 }
 span{
   text-shadow: 1px 2px;

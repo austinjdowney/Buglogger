@@ -34,7 +34,7 @@
               <div class="col-6 bug-info">
                 <small>
                   Reported By:
-                  <img :src="state.user.picture" alt="">
+                  <img :src="state.user.picture" alt="" class="rounded-circle">
                   {{ state.user.name }}
                 </small>
               </div>

@@ -20,7 +20,7 @@
           <div class="modal-body ml-3">
             <div class="row">
               Reported By:
-              <img :src="state.user.picture" alt="" class="mx-2">
+              <img :src="state.user.picture" alt="" class="mx-2 rounded-circle">
               {{ state.user.name }}
             </div>
           </div>

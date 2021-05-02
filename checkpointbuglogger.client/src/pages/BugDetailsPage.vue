@@ -1,5 +1,5 @@
 <template>
-  <div class="bugDetails container-fluid" v-if="state.bug">
+  <div class="bugDetails container-fluid bg-warning" v-if="state.bug">
     <div class="row">
       <div class="col-10">
         <h1 class="report-headline ml-4 mt-4">
@@ -12,18 +12,20 @@
         </h2>
       </div>
       <div class="col-2 mt-4">
-        <button type="button" class="btn text-light btn-warning" @click="closeBug">
+        <button type="button" class="btn text-light btn-outline-dark" @click="closeBug">
           <b>close</b>
         </button>
         <!-- how to switch true and false to open and closed-->
         <div>
-          status: {{ state.bug.closed }}
+          <b> status: {{ state.bug.closed }} </b>
         </div>
       </div>
     </div>
-    <div class="row bg-white">
+    <div class="row">
       <div class="col-md-12 ml-3">
-        {{ state.bug.description }}
+        <div class="mx-3 description-box bg-white shadow locked-scroll">
+          {{ state.bug.description }}
+        </div>
       </div>
     </div>
     <div class="row ml-5 my-3">
@@ -127,5 +129,16 @@ img{
 .card-width{
   border-radius:25px;
   box-shadow: 20px 10px 20px #474747
+}
+.description-box{
+  box-sizing: border-box;
+  border: 3px solid;
+  outline-color: black;
+  min-height: 10rem;
+}
+.locked-scroll{
+  height:20vh;
+  overflow-y: scroll;
+  word-break: break-all;
 }
 </style>

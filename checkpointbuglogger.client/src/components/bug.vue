@@ -1,15 +1,16 @@
 <template>
   <div class="bug row bug-info border-right">
     <!-- Route parameter getting set with the Params object -->
-    <p class="col-md-2 mr-4 border-right border-bottom">
+    <p class="col-md-2 mx-4 border-right border-bottom">
       <router-link style="color: orange" :to="{name: 'BugDetails', params: { id: bugProp.id }}">
         <b>{{ bugProp.title }}</b>
       </router-link>
     </p>
-    <div class="col-md-2 mx-5 border-right border-bottom">
+    <div class="col-md-2 mx-4 border-right border-bottom">
+      <img :src="bugProp.creator.picture" alt="">
       <b>{{ bugProp.creator.name }}</b>
     </div>
-    <div class="col-md-2 mx-5 border-right border-bottom">
+    <div class="col-md-2 mx-4 border-right border-bottom">
       <b>{{ bugProp.closed }}</b>
 
       <!-- <p v-if="bug.closed==false">
@@ -19,7 +20,7 @@
         <span>Closed</span>
       </p> -->
     </div>
-    <div class="col-md-2 ml-5 border-right border-bottom">
+    <div class="col-md-2 mx-5 border-right border-bottom">
       <b>{{ new Date( bugProp.updatedAt).toLocaleString(en, times) }}</b>
     </div>
   </div>
@@ -51,6 +52,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+img{
+    height: 25px;
+    width: 25px;
+  }
 .bug-info{
 min-width:20rem;
 word-break: break-all;

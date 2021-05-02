@@ -1,11 +1,11 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid flex-grow-1">
     <div class="note row border-right">
-      <div class="col-md-3 mx-5 border-right border-bottom">
+      <div class="col-md-3 pr-0 ml-1 border-right border-bottom">
         <!--WHY WON'T YOUR CREATOR POPULATE-->
         <b>Creator Name</b>
       </div>
-      <div class="col-md-9 mx-5 border-right border-bottom">
+      <div class="col-md-7 pl-0 mx-1 border-right border-bottom">
         <b>{{ noteProp.body }}</b>
       </div>
       <div>

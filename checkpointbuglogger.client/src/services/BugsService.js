@@ -30,8 +30,8 @@ class BugsService {
     // }
   }
 
-  // async hideClosed(){
-  //   let sortedBugs= this.bugs
+  // async sortClosed(){
+  //   let sortedBugs= state.bugs
   //   sortedBugs= sortedBugs.sort(a,b).reverse() => {
   //     let aBugs = a.title.toLowerCase(), bBugs = b.toLowerCase();
   //     if (aBugs <bBugs){
