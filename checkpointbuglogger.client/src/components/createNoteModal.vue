@@ -51,6 +51,8 @@ import { reactive, computed } from 'vue'
 import { notesService } from '../services/NotesService'
 import { AppState } from '../AppState'
 import Notification from '../utils/Notification'
+import { useRoute } from 'vue-router'
+
 import $ from 'jquery'
 export default {
   name: 'CreateNoteModal',
@@ -61,6 +63,7 @@ export default {
     }
   },
   setup() {
+    const route = useRoute()
     const state = reactive({
       newNote: {},
       notes: computed(() => AppState.notes),
@@ -69,12 +72,14 @@ export default {
     })
     return {
       state,
+      route,
       async addNote() {
         try {
-          await notesService.addNote(state.newNote)
+          state.newNote.bug = route.params.id
+          await notesService.addNote(state.newNote, route.params.id)
           state.newNote = {}
           $('#new-note-form').modal('hide')
-          Notification.toast('Successfully Created Bug Report', 'success')
+          Notification.toast('Successfully Created New Note', 'success')
         } catch (error) {
           Notification.toast('error:' + error, 'warning')
         }

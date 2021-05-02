@@ -1,7 +1,7 @@
 <template>
   <div class="note row border-right">
     <div class="col-md-3 mx-5 border-right border-bottom">
-      <b>{{ noteProp.creator.name }}</b>
+      <b>{{ noteProp.creatorId.name }}</b>
     </div>
     <div class="col-md-9 mx-5 border-right border-bottom">
       <b>{{ noteProp.body }}</b>
@@ -13,6 +13,10 @@
 </template>
 
 <script>
+import { computed, reactive } from 'vue'
+import { AppState } from '../AppState'
+import Notification from '../utils/Notification'
+import { notesService } from '../services/NotesService'
 export default {
   name: 'Note',
   props: {
@@ -21,11 +25,22 @@ export default {
       required: true
     }
   },
-  setup() {
+  setup(props) {
+    const state = reactive({
+      account: computed(() => AppState.account),
+      user: computed(() => AppState.user)
+    })
     return {
+      state,
+      async deleteNote() {
+        try {
+          await notesService.deleteNote(props.noteProp.id, props.noteProp.bug)
+        } catch (error) {
+          Notification.toast('Error: ' + error, 'warning')
+        }
+      }
     }
-  },
-  components: {}
+  }
 }
 </script>
 
