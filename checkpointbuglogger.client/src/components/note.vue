@@ -1,7 +1,7 @@
 <template>
   <div class="note row border-right">
     <div class="col-md-3 mx-5 border-right border-bottom">
-      <b>{{ noteProp.creatorId.name }}</b>
+      <b>Creator Name</b>
     </div>
     <div class="col-md-9 mx-5 border-right border-bottom">
       <b>{{ noteProp.body }}</b>
