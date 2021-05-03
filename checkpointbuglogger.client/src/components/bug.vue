@@ -11,7 +11,8 @@
       <b>{{ bugProp.creator.name }}</b>
     </div>
     <div class="col-md-2 mx-4 border-right border-bottom">
-      <b>{{ bugProp.closed }}</b>
+      <span v-if="bugProp.closed" class="text-danger"> <b> Closed </b></span>
+      <span v-else> <b> Open </b></span>
 
       <!-- <p v-if="bug.closed==false">
         <span>Open</span>

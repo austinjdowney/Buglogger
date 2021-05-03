@@ -1,6 +1,7 @@
 import { AppState } from '../AppState'
 import router from '../router'
 import { api } from './AxiosService'
+import Notification from '../utils/Notification'
 
 class BugsService {
   async getAllBugs() {
@@ -18,9 +19,14 @@ class BugsService {
     router.push({ name: 'BugDetails', params: { id: res.data.id } })
   }
 
-  async closeBug(id) {
+  async closeBug(bug, id) {
     await api.delete('api/bugs/' + id)
 
+    if (bug.closed === false) {
+      AppState.activeBug.closed = true
+    } else {
+      Notification.toast('NOPE TRY AGAIN')
+    }
     // HOW TO SWITCH THE TRUE AND FALSE TO OPEN AND CLOSED
     //
     // if (bugs.id.closed === false) {
@@ -30,6 +36,14 @@ class BugsService {
     // }
   }
 
+  async sortClosed() {
+    await api.get('api/bugs')
+    if (document.getElementById('sortClosed').checked) {
+      AppState.bugs = AppState.bugs.filter(bug => bug.closed !== true)
+    } else {
+      this.getAllBugs()
+    }
+  }
   // async sortClosed(){
   //   let sortedBugs= state.bugs
   //   sortedBugs= sortedBugs.sort(a,b).reverse() => {

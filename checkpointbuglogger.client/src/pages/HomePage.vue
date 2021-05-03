@@ -11,6 +11,7 @@
                   class="btn btn-success text-dark shadow"
                   data-toggle="modal"
                   data-target="#new-bug-form"
+                  v-if="state.user.isAuthenticated"
           >
             Report
           </button>
@@ -18,7 +19,7 @@
         </h1>
       </div>
       <div class="col-md-3 mt-5">
-        <input type="checkbox" id="openClose" name="openClose" />
+        <input type="checkbox" id="sortClosed" name="sortClosed" @click="sortClosed" />
         <!--PUT @click="sortClosed"-->
         <span class=""> Hide Closed </span>
       </div>
@@ -62,7 +63,9 @@ export default {
   setup() {
     const route = useRoute()
     const state = reactive({
-      bugs: computed(() => AppState.bugs)
+      bugs: computed(() => AppState.bugs),
+      user: computed(() => AppState.user),
+      account: computed(() => AppState.account)
     })
 
     onMounted(async() => {
@@ -74,7 +77,14 @@ export default {
     })
     return {
       state,
-      route
+      route,
+      async sortClosed(bugs) {
+        try {
+          await bugsService.sortClosed(bugs)
+        } catch (error) {
+          Notification.toast('Error: ' + error, 'warning')
+        }
+      }
     }
   }
 

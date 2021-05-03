@@ -12,12 +12,19 @@
         </h2>
       </div>
       <div class="col-2 mt-4">
-        <button type="button" class="btn text-light btn-outline-dark" @click="closeBug">
+        <button type="button" class="btn text-light btn-outline-dark" v-if="state.bug.closed=== false" @click="closeBug">
           <b>close</b>
         </button>
         <!-- how to switch true and false to open and closed-->
         <div>
-          <b> status: {{ state.bug.closed }} </b>
+          <b> status:
+          </b>
+          <span v-if="state.bug.closed" class="text-danger">
+            <b>Closed</b>
+          </span>
+          <span v-else class="text-success">
+            <b>Open</b>
+          </span>
         </div>
       </div>
     </div>
