@@ -36,16 +36,17 @@ class BugsService {
     // }
   }
 
-  async sortClosed() {
-    await api.get('api/bugs')
-    if (document.getElementById('sortClosed').checked) {
-      AppState.bugs = AppState.bugs.filter(bug => bug.closed !== true)
-    } else {
-      this.getAllBugs()
-    }
-  }
+  // async sortClosed() {
+  //   await api.get('api/bugs')
+  //   if (document.getElementById('sortClosed').checked) {
+  //     AppState.bugs = AppState.bugs.filter(bug => bug.closed !== true)
+  //   } else {
+  //     this.getAllBugs()
+  //   }
+  // }
 
   async editBug(newBug) {
+    delete newBug.closed
     await api.put('api/bugs/' + newBug.id, newBug)
     this.getBugById(newBug.id)
   }

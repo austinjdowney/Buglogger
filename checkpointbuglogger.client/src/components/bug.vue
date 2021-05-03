@@ -1,16 +1,16 @@
 <template>
   <div class="bug row bug-info border-right">
     <!-- Route parameter getting set with the Params object -->
-    <p class="col-md-2 mx-4 border-right border-bottom">
+    <p class="list-item col-sm-2 mx-4 border-right border-bottom">
       <router-link style="color: orange" :to="{name: 'BugDetails', params: { id: bugProp.id }}">
         <b>{{ bugProp.title }}</b>
       </router-link>
     </p>
-    <div class="col-md-2 mx-4 border-right border-bottom">
+    <div class="list-item col-sm-2 mx-4 border-right border-bottom">
       <img :src="bugProp.creator.picture" alt="">
       <b>{{ bugProp.creator.name }}</b>
     </div>
-    <div class="col-md-2 mx-4 border-right border-bottom">
+    <div class="list-item col-sm-2 mx-4 border-right border-bottom">
       <span v-if="bugProp.closed" class="text-danger"> <b> Closed </b></span>
       <span v-else> <b> Open </b></span>
 
@@ -21,7 +21,7 @@
         <span>Closed</span>
       </p> -->
     </div>
-    <div class="col-md-2 mx-5 border-right border-bottom">
+    <div class="list-item col-sm-2 mx-5 border-right border-bottom">
       <b>{{ new Date( bugProp.updatedAt).toLocaleString('en', 'times') }}</b>
     </div>
   </div>
@@ -63,5 +63,10 @@ word-break: break-all;
 }
 .router-link:hover{
 color: var(--dark)
+}
+@media only screen and (max-width: 768) {
+.list-item{
+  flex-direction: row;
+}
 }
 </style>

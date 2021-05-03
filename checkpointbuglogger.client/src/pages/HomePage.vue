@@ -19,7 +19,7 @@
         </h1>
       </div>
       <div class="col-md-3 mt-5">
-        <input type="checkbox" id="sortClosed" name="sortClosed" @click="sortClosed" />
+        <input type="checkbox" id="" name="sortClosed" @click="state.checkbox = !state.checkbox" />
         <!--PUT @click="sortClosed"-->
         <span class=""> Hide Closed </span>
       </div>
@@ -28,24 +28,35 @@
       <div class="card card-width mx-3-5 mb-4">
         <div class="card-body bg-success card-width">
           <div class="card-title d-flex flex-direction-row justify-content-between border-bottom">
-            <h4 class="mx-3 border-bottom border-right">
-              Title
-            </h4>
-            <h4 class="mx-3 border-bottom border-right">
-              Reported By
-            </h4>
-            <h4 class="mx-3 border-bottom border-right">
-              Status
-            </h4>
-            <h4 class="mx-3 border-bottom border-right">
-              Last Modified
-            </h4>
+            <div class="">
+              <p class="mx-3 border-bottom border-right">
+                <b> Title </b>
+              </p>
+            </div>
+            <div class="">
+              <p p class="mx-3 border-bottom border-right">
+                <b> Reported By </b>
+              </p>
+            </div>
+            <div class="">
+              <p class="mx-3 border-bottom border-right">
+                <b> Status </b>
+              </p>
+            </div>
+            <div class="">
+              <p class="mx-3 border-bottom border-right">
+                <b> Last Modified </b>
+              </p>
+            </div>
           </div>
-          <p class="card-text locked-scroll">
-            <ul>
+          <div class="card-text locked-scroll">
+            <div v-if="state.checkbox=== true">
               <Bug v-for="bug in state.bugs" :key="bug.id" :bug-prop="bug" />
-            </ul>
-          </p>
+            </div>
+            <div v-else>
+              <Bug v-for="bug in state.filtered" :key="bug.id" :bug-prop="bug" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -65,7 +76,9 @@ export default {
     const state = reactive({
       bugs: computed(() => AppState.bugs),
       user: computed(() => AppState.user),
-      account: computed(() => AppState.account)
+      account: computed(() => AppState.account),
+      filtered: computed(() => AppState.bugs.filter(bug => bug.closed !== true)),
+      checkbox: true
     })
 
     onMounted(async() => {
@@ -77,14 +90,14 @@ export default {
     })
     return {
       state,
-      route,
-      async sortClosed(bugs) {
-        try {
-          await bugsService.sortClosed(bugs)
-        } catch (error) {
-          Notification.toast('Error: ' + error, 'warning')
-        }
-      }
+      route
+      // async sortClosed() {
+      //   try {
+      //     await bugsService.sortClosed()
+      //   } catch (error) {
+      //     Notification.toast('Error: ' + error, 'warning')
+      //   }
+      // }
     }
   }
 
@@ -116,5 +129,14 @@ export default {
 }
 span{
   text-shadow: 1px 2px;
+}
+
+@media only screen and (max-width: 768) {
+  .report-headline{
+  font-family: 'Black Ops One', cursive;
+}
+.card-title{
+  flex-grow: 1;
+}
 }
 </style>

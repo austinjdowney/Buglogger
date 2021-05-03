@@ -67,7 +67,7 @@
               class="btn btn-success text-light shadow"
               data-toggle="modal"
               data-target="#new-note-form"
-              v-if="state.activeBug.creator.id === state.account.id & state.activeBug.closed=== false"
+              v-if="state.activeBug.closed=== false"
       >
         <b> Add </b>
       </button>
@@ -155,6 +155,8 @@ export default {
         try {
           if (await Notification.confirmAction('Are you sure?', "You won't be able to revert this!", 'warning', 'Yes, ewwww bug!')) {
             await bugsService.editBug(state.newBug)
+            state.newBug = {}
+            state.edit = false
           }
         } catch (error) {
           Notification.toast('Error: ' + error, 'warning')
