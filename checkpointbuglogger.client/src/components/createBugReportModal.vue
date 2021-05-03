@@ -76,10 +76,6 @@ import $ from 'jquery'
 export default {
   name: 'CreateBugReportModal',
   props: {
-    bugProp: {
-      type: Object,
-      required: true
-    }
   },
   setup() {
     const state = reactive({

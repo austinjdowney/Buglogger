@@ -1,25 +1,38 @@
 <template>
-  <div class="bugDetails container-fluid bg-warning" v-if="state.bug">
+  <div class="bugDetails container-fluid bg-warning" v-if="state.activeBug">
     <div class="row">
-      <div class="col-10">
-        <h1 class="report-headline ml-4 mt-4">
-          <b> Title: {{ state.bug.title }} </b>
+      <div class="col-md-10">
+        <h1 class="report-headline ml-4 mt-4" v-if="state.edit===false">
+          <b> Title: {{ state.activeBug.title }} </b>
+
+          <small>
+            <i class="fas fa-edit" v-if="state.activeBug.creator.id === state.account.id & state.activeBug.closed=== false" @click="state.edit=true"></i>
+          </small>
         </h1>
+        <div v-if="state.edit===true">
+          <input type="text" v-model="state.newBug.title" placeholder="New Bug Title...">
+          <button type="button" class="btn btn-warning" data-dismiss="modal">
+            Cancel
+          </button>
+          <button type="submit" class="btn btn-success" @click="editBug">
+            Create
+          </button>
+        </div>
         <h2 class="ml-4">
           Reported by:
-          <img class="rounded-circle" :src="state.bug.creator.picture" alt="">
-          {{ state.bug.creator.name }}
+          <img class="rounded-circle" :src="state.activeBug.creator.picture" alt="">
+          {{ state.activeBug.creator.name }}
         </h2>
       </div>
-      <div class="col-2 mt-4">
-        <button type="button" class="btn text-light btn-outline-dark" v-if="state.bug.closed=== false" @click="closeBug">
+      <div class="col-md-2 mt-4">
+        <button type="button" class="btn text-light btn-outline-dark" v-if="state.activeBug.closed=== false" @click="closeBug">
           <b>close</b>
         </button>
         <!-- how to switch true and false to open and closed-->
         <div>
           <b> status:
           </b>
-          <span v-if="state.bug.closed" class="text-danger">
+          <span v-if="state.activeBug.closed" class="text-danger">
             <b>Closed</b>
           </span>
           <span v-else class="text-success">
@@ -30,8 +43,18 @@
     </div>
     <div class="row">
       <div class="col-md-12 ml-3">
-        <div class="mx-3 description-box bg-white shadow locked-scroll">
-          {{ state.bug.description }}
+        <div class="mx-3 description-box bg-white shadow locked-scroll" v-if="state.edit===false">
+          {{ state.activeBug.description }}
+          <i class="fas fa-edit" v-if="state.activeBug.creator.id === state.account.id & state.activeBug.closed=== false" @click="state.edit=true"></i>
+        </div>
+        <div v-if="state.edit===true">
+          <input type="text" v-model="state.newBug.description" placeholder="New Bug Description...">
+          <button type="button" class="btn btn-warning" data-dismiss="modal">
+            Cancel
+          </button>
+          <button type="submit" class="btn btn-success" @click="editBug">
+            Create
+          </button>
         </div>
       </div>
     </div>
@@ -44,12 +67,16 @@
               class="btn btn-success text-light shadow"
               data-toggle="modal"
               data-target="#new-note-form"
+              v-if="state.activeBug.creator.id === state.account.id & state.activeBug.closed=== false"
       >
         <b> Add </b>
       </button>
       <Create-note-modal />
     </div>
-    <div class="row justify-content-center">
+    <div class="
+              row
+              justify-content-center"
+    >
       <div class="card card-width mx-3-5 mb-4">
         <div class="card-body bg-success card-width">
           <div class="card-title d-flex flex-direction-row justify-content-between border-bottom">
@@ -94,10 +121,12 @@ export default {
   setup() {
     const route = useRoute()
     const state = reactive({
-      bug: computed(() => AppState.activeBug),
+      activeBug: computed(() => AppState.activeBug),
       notes: computed(() => AppState.notes),
       user: computed(() => AppState.user),
-      account: computed(() => AppState.account)
+      account: computed(() => AppState.account),
+      edit: false,
+      newBug: {}
     })
 
     onMounted(async() => {
@@ -111,15 +140,26 @@ export default {
     return {
       state,
       route,
-      async closeBug(bug) {
+      async closeBug() {
         try {
-          await bugsService.closeBug(bug.id)
-          Notification.toast('Successfully Changed Status', 'success')
+          if (await Notification.confirmAction('Are you sure?', "You won't be able to revert this!", 'warning', 'Yes, ewwww bug!')) {
+            await bugsService.closeBug(state.activeBug, state.activeBug.id)
+          }
+        } catch (error) {
+          Notification.toast('Error: ' + error, 'warning')
+        }
+      },
+      async editBug(newBug) {
+        state.newBug.id = state.activeBug.id
+        // delete newBug.id.closed
+        try {
+          if (await Notification.confirmAction('Are you sure?', "You won't be able to revert this!", 'warning', 'Yes, ewwww bug!')) {
+            await bugsService.editBug(state.newBug)
+          }
         } catch (error) {
           Notification.toast('Error: ' + error, 'warning')
         }
       }
-
     }
   }
 }

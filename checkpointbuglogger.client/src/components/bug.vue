@@ -22,7 +22,7 @@
       </p> -->
     </div>
     <div class="col-md-2 mx-5 border-right border-bottom">
-      <b>{{ new Date( bugProp.updatedAt).toLocaleString(en, times) }}</b>
+      <b>{{ new Date( bugProp.updatedAt).toLocaleString('en', 'times') }}</b>
     </div>
   </div>
 </template>

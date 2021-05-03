@@ -62,10 +62,6 @@ import $ from 'jquery'
 export default {
   name: 'CreateNoteModal',
   props: {
-    noteProp: {
-      type: Object,
-      required: true
-    }
   },
   setup() {
     const route = useRoute()

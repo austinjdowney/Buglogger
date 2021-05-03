@@ -19,10 +19,10 @@ class BugsService {
     router.push({ name: 'BugDetails', params: { id: res.data.id } })
   }
 
-  async closeBug(bug, id) {
+  async closeBug(activeBug, id) {
     await api.delete('api/bugs/' + id)
 
-    if (bug.closed === false) {
+    if (activeBug.closed === false) {
       AppState.activeBug.closed = true
     } else {
       Notification.toast('NOPE TRY AGAIN')
@@ -44,18 +44,11 @@ class BugsService {
       this.getAllBugs()
     }
   }
-  // async sortClosed(){
-  //   let sortedBugs= state.bugs
-  //   sortedBugs= sortedBugs.sort(a,b).reverse() => {
-  //     let aBugs = a.title.toLowerCase(), bBugs = b.toLowerCase();
-  //     if (aBugs <bBugs){
-  //       return -1
-  //     } if (aBugs > bBugs) {
-  //       return 1
-  //     }
-  //     return 0
-  //   }
-  // }
+
+  async editBug(newBug) {
+    await api.put('api/bugs/' + newBug.id, newBug)
+    this.getBugById(newBug.id)
+  }
 }
 
 export const bugsService = new BugsService()
