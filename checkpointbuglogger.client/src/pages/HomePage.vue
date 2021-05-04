@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid bg-warning flex-grow-1">
+  <div class="container-fluid bg-dark flex-grow-1">
     <div class="row">
       <div class="col-md-8 my-4 ml-4">
         <h1 class="report-headline ml-5">
