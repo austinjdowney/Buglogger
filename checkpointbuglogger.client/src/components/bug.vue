@@ -10,7 +10,7 @@
       <img :src="bugProp.creator.picture" alt="">
       <b>{{ bugProp.creator.name }}</b>
     </div>
-    <div class="list-item col-sm-2 mx-4 border-right border-bottom">
+    <div class="list-item col-sm-2 mx-3 border-right border-bottom">
       <span v-if="bugProp.closed" class="text-danger"> <b> Closed </b></span>
       <span v-else> <b> Open </b></span>
 

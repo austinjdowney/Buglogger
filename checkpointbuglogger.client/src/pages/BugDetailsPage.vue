@@ -25,7 +25,7 @@
         </h2>
       </div>
       <div class="col-md-2 mt-4">
-        <button type="button" class="btn text-light btn-outline-dark" v-if="state.activeBug.closed=== false" @click="closeBug">
+        <button type="button" class="btn text-light btn-outline-dark" v-if="state.activeBug.creator.id === state.account.id & state.activeBug.closed=== false" @click="closeBug">
           <b>close</b>
         </button>
         <!-- how to switch true and false to open and closed-->
