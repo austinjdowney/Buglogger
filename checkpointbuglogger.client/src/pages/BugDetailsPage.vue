@@ -1,8 +1,8 @@
 <template>
-  <div class="bugDetails container-fluid bg-warning" v-if="state.activeBug">
+  <div class="bugDetails container-fluid bg-dark" v-if="state.activeBug">
     <div class="row">
       <div class="col-md-10">
-        <h1 class="report-headline ml-4 mt-4" v-if="state.edit===false">
+        <h1 class="report-headline text-light ml-4 mt-4" v-if="state.edit===false">
           <b> Title: {{ state.activeBug.title }} </b>
 
           <small>
@@ -18,7 +18,7 @@
             Create
           </button>
         </div>
-        <h2 class="ml-4">
+        <h2 class="ml-4 text-light">
           Reported by:
           <img class="rounded-circle" :src="state.activeBug.creator.picture" alt="">
           {{ state.activeBug.creator.name }}
@@ -29,7 +29,7 @@
           <b>close</b>
         </button>
         <!-- how to switch true and false to open and closed-->
-        <div>
+        <div class="text-light">
           <b> status:
           </b>
           <span v-if="state.activeBug.closed" class="text-danger">
@@ -45,7 +45,7 @@
       <div class="col-md-12 ml-3">
         <div class="mx-3 description-box bg-white shadow locked-scroll" v-if="state.edit===false">
           {{ state.activeBug.description }}
-          <i class="fas fa-edit" v-if="state.activeBug.creator.id === state.account.id & state.activeBug.closed=== false" @click="state.edit=true"></i>
+          <i class="fas fa-edit text-light" v-if="state.activeBug.creator.id === state.account.id & state.activeBug.closed=== false" @click="state.edit=true"></i>
         </div>
         <div v-if="state.edit===true">
           <input type="text" v-model="state.newBug.description" placeholder="New Bug Description...">
@@ -59,7 +59,7 @@
       </div>
     </div>
     <div class="row ml-5 my-3">
-      <h3 class="mx-2">
+      <h3 class="mx-2 text-light">
         Notes
       </h3>
       <button title="Open Create Note Form"

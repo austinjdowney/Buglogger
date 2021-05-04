@@ -2,26 +2,26 @@
   <div class="container-fluid bg-dark flex-grow-1">
     <div class="row">
       <div class="col-md-8 my-4 ml-4">
-        <h1 class="report-headline ml-5">
+        <h1 class="report-headline ml-5 text-light">
           <span>
             Current Bug
           </span>
           <button title="Open Create Bug Form"
                   type="button"
-                  class="btn btn-success text-dark shadow"
+                  class="btn btn-success text-light shadow"
                   data-toggle="modal"
                   data-target="#new-bug-form"
                   v-if="state.user.isAuthenticated"
           >
             Report
           </button>
-          <Create-bug-report-modal />
         </h1>
       </div>
+      <Create-bug-report-modal />
       <div class="col-md-3 mt-5">
         <input type="checkbox" id="" name="sortClosed" @click="state.checkbox = !state.checkbox" />
         <!--PUT @click="sortClosed"-->
-        <span class=""> Hide Closed </span>
+        <span class="text-light"> Hide Closed </span>
       </div>
     </div>
     <div class="row justify-content-center">
