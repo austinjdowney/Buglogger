@@ -10,7 +10,7 @@
           </small>
         </h1>
         <div v-if="state.edit===true">
-          <input type="text" v-model="state.newBug.title" placeholder="New Bug Title...">
+          <input class="mt-5" type="text" v-model="state.newBug.title" placeholder="New Bug Title...">
           <button type="button" class="btn btn-warning" data-dismiss="modal">
             Cancel
           </button>
@@ -48,7 +48,7 @@
           <i class="fas fa-edit text-light" v-if="state.activeBug.creator.id === state.account.id & state.activeBug.closed=== false" @click="state.edit=true"></i>
         </div>
         <div v-if="state.edit===true">
-          <input type="text" v-model="state.newBug.description" placeholder="New Bug Description...">
+          <input class="mt-3" type="text" v-model="state.newBug.description" placeholder="New Bug Description...">
           <button type="button" class="btn btn-warning" data-dismiss="modal">
             Cancel
           </button>
