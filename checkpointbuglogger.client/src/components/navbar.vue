@@ -1,8 +1,8 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-dark bg-success">
     <router-link class="navbar-brand d-flex" :to="{ name: 'Home' }">
-      <div class="d-flex flex-row mx-2 align-items-center report-headline">
-        <i class="fas fa-bug icon mx-2"></i> Logger
+      <div class=" text-dark d-flex flex-row mx-2 align-items-center report-headline">
+        <i class="fas fa-bug icon mx-2 text-dark"></i> Logger
       </div>
     </router-link>
     <button
@@ -19,7 +19,7 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-          <router-link :to="{ name: 'Home' }" class="nav-link report-headline">
+          <router-link :to="{ name: 'Home' }" class="nav-link report-headline text-dark">
             <b>Home</b>
           </router-link>
         </li>

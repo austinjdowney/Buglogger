@@ -7,9 +7,9 @@
       <router-view />
     </main>
     <footer>
-      <div class="bg-success text-light text-center p-4">
+      <div class="bg-success text-dark text-center p-4">
         <span>
-          <i class="fas fa-bug icon"></i>   Made with <i class="fas fa-bug icon"></i> by Austin   <i class="fas fa-bug icon"></i>
+          <b> <i class="fas fa-bug icon"></i>   Made with <i class="fas fa-bug icon"></i> by Austin   <i class="fas fa-bug icon"></i></b>
         </span>
       </div>
     </footer>

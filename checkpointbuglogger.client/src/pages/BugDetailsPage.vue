@@ -64,7 +64,7 @@
       </h3>
       <button title="Open Create Note Form"
               type="button"
-              class="btn btn-success text-light shadow"
+              class="btn btn-success text-dark shadow"
               data-toggle="modal"
               data-target="#new-note-form"
               v-if="state.activeBug.closed=== false"

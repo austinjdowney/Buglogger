@@ -3,7 +3,8 @@
     <div class="note row border-right">
       <div class="col-md-3 pr-0 ml-1 border-right border-bottom">
         <!--WHY WON'T YOUR CREATOR POPULATE-->
-        <b>Creator Name</b>
+        <img :src="noteProp.creator.picture" alt="">
+        <b>{{ noteProp.creator.name }}</b>
       </div>
       <div class="col-md-7 pl-0 mx-1 border-right border-bottom">
         <b>{{ noteProp.body }}</b>
@@ -51,4 +52,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+img{
+  height: 40px;
+    width: 40px;
+  }
 </style>
